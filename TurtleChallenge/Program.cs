@@ -23,6 +23,9 @@ namespace TurtleChallenge
 
         public static void PlayGame()
         {
+            //Used to display message is turtle doesn't win or lose.
+            bool GameIsFinished = false;
+
             //string[] lines = File.ReadAllLines(Path.Combine(Directory.GetCurrentDirectory(), "DataFiles\\MovesFail.txt"));
             //string[] lines = File.ReadAllLines(Path.Combine(Directory.GetCurrentDirectory(), "DataFiles\\MovesInvalidInput.txt"));
             //string[] lines = File.ReadAllLines(Path.Combine(Directory.GetCurrentDirectory(), "DataFiles\\MovesNoExitOrMine.txt"));
@@ -44,12 +47,14 @@ namespace TurtleChallenge
                     {
                         Console.WriteLine("Game is won, congratualtions!");
                         Board.PrintBoard();
+                        GameIsFinished = true;
                         break;
                     }
                     else if (Board.GameTurtle.IsDead)
                     {
                         Console.WriteLine("Game is over, better luck next time!");
                         Board.PrintBoard();
+                        GameIsFinished = true;
                         break;
                     }
                 }
@@ -59,6 +64,11 @@ namespace TurtleChallenge
                 }
 
                 Board.PrintBoard();
+            }
+
+            if(!GameIsFinished)
+            {
+                Console.WriteLine("Turtle is caught in purgatory, did not escape or hit mine.");
             }
         }
 
